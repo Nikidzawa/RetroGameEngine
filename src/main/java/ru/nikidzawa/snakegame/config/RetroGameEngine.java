@@ -26,7 +26,7 @@ public class RetroGameEngine {
     public void onClick (KeyCode keyCode) {
 
     }
-    public void createGameField(int rowCount, int columnCount, int cellWidth, int cellHeight, Color color, String string) {
+    public void createGameField(int rowCount, int columnCount, int cellWidth, int cellHeight, Color color) {
         for (int x = 0; x < rowCount; x++) {
             for (int y = 0; y < columnCount; y++) {
                 Rectangle rectangle = new Rectangle(cellWidth, cellHeight);
@@ -88,7 +88,7 @@ public class RetroGameEngine {
                 @Override
                 public void handle(long now) {
                     if (now - lastTime >= i) {
-                        onFrame(animationTimer);
+                        onFrame();
                         lastTime = now;
                     }
                 }
@@ -100,7 +100,7 @@ public class RetroGameEngine {
             }
         }
     }
-    public void onFrame (AnimationTimer animationTimer) {}
+    public void onFrame () {}
 
 
     public void showGrid (boolean show) {

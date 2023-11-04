@@ -1,6 +1,5 @@
 package ru.nikidzawa.snakegame;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
@@ -41,7 +40,7 @@ public class SnakeGame extends RetroGameEngine {
     }
 
     @Override
-    public void onFrame(AnimationTimer animationTimer) {
+    public void onFrame() {
         snake.move(apple);
         if (!apple.isAlive) {
             score += 5;
@@ -84,7 +83,7 @@ public class SnakeGame extends RetroGameEngine {
         isGameStop = true;
     }
     public void drawGameField() {
-        createGameField(WIDTH, HEIGHT , 30, 30, Color.DARKSEAGREEN, "");
+        createGameField(WIDTH, HEIGHT , 30, 30, Color.DARKSEAGREEN);
         apple.draw(this);
         snake.draw(this);
     }
