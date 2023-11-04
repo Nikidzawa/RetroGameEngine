@@ -2,8 +2,9 @@ package ru.nikidzawa.snakegame.config;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -14,51 +15,71 @@ import java.util.Objects;
 
 public class RetroGameEngine {
     @FXML
-    protected GridPane gridPane;
+    protected GridPanes gridPanes;
     private AnimationTimer animationTimer;
-    public RetroGameEngine(GridPane gridPane) {this.gridPane = gridPane;}
+    public RetroGameEngine(GridPanes gridPanes) {this.gridPanes = gridPanes;}
     public RetroGameEngine() {}
     @FXML
     protected void initialize() {
-        new SnakeGame(gridPane);
+        new SnakeGame(gridPanes);
     }
     public void onClick (KeyCode keyCode) {
 
     }
-
-    public void createGameField(int rowCount, int columnCount, int cellWidth, int cellHeight, Color color) {
-        gridPane.setGridLinesVisible(true);
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < columnCount; j++) {
+    public void createGameField(int rowCount, int columnCount, int cellWidth, int cellHeight, Color color, String string) {
+        for (int x = 0; x < rowCount; x++) {
+            for (int y = 0; y < columnCount; y++) {
                 Rectangle rectangle = new Rectangle(cellWidth, cellHeight);
                 rectangle.setFill(color);
-
-                gridPane.add(rectangle, i, j);
+                Text text = new Text("");
+                StackPane stackPane = new StackPane(rectangle, text);
+                stackPane.setMaxSize(cellWidth, cellHeight);
+                StackPane lastPane = findStackPane(x, y);
+                if (lastPane != null) {
+                    gridPanes.getChildren().remove(lastPane);
+                }
+                gridPanes.add(stackPane, x, y);
             }
         }
     }
-    public void changeCellColor(int x, int y, Color color) {
-        Rectangle rectangle = findRectangle(x, y);
-        rectangle.setFill(color);
-    }
-    public Rectangle findRectangle(int x, int y) {
-        return (Rectangle) gridPane.getChildren().stream()
-                .filter(n -> Objects.equals(GridPane.getRowIndex(n), x)
-                        && Objects.equals(GridPane.getColumnIndex(n), y))
+    private StackPane findStackPane(int x, int y) {
+        return (StackPane) gridPanes.getChildren().stream()
+                .filter(n -> Objects.equals(GridPanes.getRowIndex(n), y)
+                        && Objects.equals(GridPanes.getColumnIndex(n), x))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Не удалось найти указаную ячейку. Проверьте что вы ранее создали игровое поле"));
+                .orElse(null);
     }
-    public void changeCell(int x, int y, String smile) {
-        Rectangle previousNode = findRectangle(x, y);
-        StackPane stackPane = new StackPane();
-        Rectangle rectangle = new Rectangle(previousNode.getHeight(), previousNode.getWidth());
-        rectangle.setFill(previousNode.getFill());
+    public void changeCell(int x, int y, String text, Color setColorOrNull, int fontSize) {
+        StackPane newStackPane = new StackPane();
+        StackPane stackPane = findStackPane(x, y);
+        Rectangle oldRectangle = null;
+        Text oldText = null;
 
-        Text text = new Text(smile);
-        text.setFont(Font.font(22));
-        stackPane.getChildren().addAll(rectangle, text);
-        gridPane.getChildren().remove(rectangle);
-        gridPane.add(stackPane, x, y);
+        for (Node node : stackPane.getChildren()) {
+            if (node instanceof Rectangle) {
+                oldRectangle = (Rectangle) node;
+            }
+            if (node instanceof Text) {
+                oldText = (Text) node;
+            }
+        }
+
+        if (oldRectangle != null && oldText != null) {
+            Rectangle newRectangle = new Rectangle(
+                    oldRectangle.getWidth(),
+                    oldRectangle.getHeight(),
+                    setColorOrNull == null ? oldRectangle.getFill() : setColorOrNull
+            );
+
+            Text txt = new Text(text);
+            txt.setFill(oldText.getFill());
+            txt.setFont(Font.font(fontSize));
+
+            newStackPane.getChildren().addAll(newRectangle, txt);
+            gridPanes.getChildren().remove(stackPane);
+            gridPanes.add(newStackPane, x, y);
+        }
+        else {throw new RuntimeException("Ошибка в поиске элементов внутри StackPane");}
     }
     public void animation(int i, boolean startAnimation) {
         if (startAnimation) {
@@ -67,7 +88,7 @@ public class RetroGameEngine {
                 @Override
                 public void handle(long now) {
                     if (now - lastTime >= i) {
-                        onFrame();
+                        onFrame(animationTimer);
                         lastTime = now;
                     }
                 }
@@ -79,9 +100,9 @@ public class RetroGameEngine {
             }
         }
     }
-    public void onFrame () {}
+    public void onFrame (AnimationTimer animationTimer) {}
 
 
-    public void showGrid (boolean show) {gridPane.setGridLinesVisible(show);}
-    public boolean isShowGrid () {return gridPane.isGridLinesVisible();}
+    public void showGrid (boolean show) {
+        gridPanes.setGridLinesVisible(show);}
 }

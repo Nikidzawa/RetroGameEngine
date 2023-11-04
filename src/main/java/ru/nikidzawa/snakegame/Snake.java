@@ -23,9 +23,13 @@ public class Snake {
 
     public void move(Apple apple) {
         GameObject head = createNewHead();
-        if (head.x >= SnakeGame.WIDTH || head.y >= SnakeGame.WIDTH || head.x < 0 || head.y < 0) {
-            isAlive = false;
-            return;
+        if (head.x >= SnakeGame.WIDTH || head.y >= SnakeGame.HEIGHT || head.x < 0 || head.y < 0) {
+            switch (direction) {
+                case UP -> head.y = SnakeGame.HEIGHT - 1;
+                case DOWN -> head.y = 0;
+                case LEFT -> head.x = SnakeGame.WIDTH - 1;
+                case RIGHT -> head.x = 0;
+            };
         }
         if (checkCollision(head)) {
             isAlive = false;
@@ -59,15 +63,15 @@ public class Snake {
         for (int i = 0; i < snakeParts.size(); i++) {
             GameObject part = snakeParts.get(i);
             if (i == 0) {
-                game.changeCell(part.x, part.y, HEAD);
+                game.changeCell(part.x, part.y, HEAD, null, 22);
             }
             else {
-                game.changeCell(part.x, part.y, BODY);
+                game.changeCell(part.x, part.y, BODY, null, 22);
             }
         }
     }
     public boolean checkCollision (GameObject object) {
-        for (int i = 0; i < snakeParts.size() - 1; i++) {
+        for (int i = 0; i < snakeParts.size(); i++) {
             GameObject part = snakeParts.get(i);
             if (part.x == object.x && part.y == object.y)
                 return true;

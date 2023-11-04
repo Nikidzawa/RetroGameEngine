@@ -1,9 +1,11 @@
 package ru.nikidzawa.snakegame;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
+
 import javafx.scene.paint.Color;
+import ru.nikidzawa.snakegame.config.GridPanes;
 import ru.nikidzawa.snakegame.config.RetroGameEngine;
 
 public class SnakeGame extends RetroGameEngine {
@@ -11,15 +13,15 @@ public class SnakeGame extends RetroGameEngine {
     public static final int HEIGHT = 15;
     private boolean isGameStop = false;
     private int score = 0;
-    private final static int goal = 150;
+    private final static int goal = 300;
     private int frameRate = 300000000;
     private Snake snake;
     private Apple apple;
 
-    public SnakeGame(GridPane gridPane) {
-        super(gridPane);
-        Platform.runLater(gridPane::requestFocus);
-        gridPane.setOnKeyPressed(event -> onClick(event.getCode()));
+    public SnakeGame(GridPanes gridPanes) {
+        super(gridPanes);
+        Platform.runLater(gridPanes::requestFocus);
+        gridPanes.setOnKeyPressed(event -> onClick(event.getCode()));
         initialize();
     }
 
@@ -29,27 +31,28 @@ public class SnakeGame extends RetroGameEngine {
     }
 
     private void createGame() {
-        snake = new Snake(WIDTH/2, HEIGHT/2);
-        createNewApple();
         isGameStop = false;
+        snake = new Snake(WIDTH/2, HEIGHT/2);
+        setScore(0);
+        createNewApple();
+        drawGameField();
         animation(frameRate, true);
-        createGameField(WIDTH, HEIGHT, 30, 30, Color.DARKSEAGREEN);
         showGrid(true);
     }
 
     @Override
-    public void onFrame() {
+    public void onFrame(AnimationTimer animationTimer) {
         snake.move(apple);
         if (!apple.isAlive) {
             score += 5;
             setScore(score);
             createNewApple();
         }
+        if (goal < score) {
+            gameWin();
+        }
         if (!snake.isAlive) {
             gameOver();
-        }
-        if (goal == score) {
-            gameWin();
         }
         drawGameField();
     }
@@ -68,7 +71,6 @@ public class SnakeGame extends RetroGameEngine {
         }
         if (isGameStop && keyCode == KeyCode.SPACE) {
             createGame();
-            createGameField(WIDTH, HEIGHT, 30, 30, Color.DARKSEAGREEN);
         }
     }
     private void gameOver () {
@@ -82,11 +84,7 @@ public class SnakeGame extends RetroGameEngine {
         isGameStop = true;
     }
     public void drawGameField() {
-        for (int x = 0; x < WIDTH; x++) {
-            for (int y = 0; y < HEIGHT; y++) {
-                changeCell(x, y, "");
-            }
-        }
+        createGameField(WIDTH, HEIGHT , 30, 30, Color.DARKSEAGREEN, "");
         apple.draw(this);
         snake.draw(this);
     }
@@ -97,8 +95,5 @@ public class SnakeGame extends RetroGameEngine {
     }
     private void setScore (int score) {
         this.score = score;
-    }
-    private void setFrameRate (int frameRate) {
-        this.frameRate = frameRate;
     }
 }
