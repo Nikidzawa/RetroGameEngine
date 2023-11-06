@@ -3,6 +3,7 @@ package ru.nikidzawa.snakegame;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import ru.nikidzawa.snakegame.config.Grid;
 import ru.nikidzawa.snakegame.config.RetroGameEngine;
@@ -28,8 +29,8 @@ public class SnakeGame extends RetroGameEngine {
     private Wall wall;
 
 
-    public SnakeGame(Grid grid) {
-        super(grid);
+    public SnakeGame(Grid grid, BorderPane pane) {
+        super(grid, pane);
 
         Platform.runLater(grid::requestFocus);
         grid.setOnKeyPressed(event -> onClick(event.getCode()));
@@ -52,11 +53,15 @@ public class SnakeGame extends RetroGameEngine {
         if (DIFFICULT) {
            do {wall = new Wall(random(WIDTH), random(HEIGHT));}
            while (snake.checkCollision(wall));
-            animation(frameRate / 2, true);
+            animation(frameRate / 2);
         }
-        else {animation(frameRate, true);}
+        else {animation(frameRate);}
         createNewApple();
         drawGameField();
+        createStaticField(Direction.UP, Color.DARKSEAGREEN);
+        addTextInField(Direction.UP, "Snake Game", Color.BLACK, 28, 25, 140);
+        addTextInField(Direction.UP, "Score: " + score, Color.BLACK, 18, 10, 10 );
+        addTextInField(Direction.UP, "Goal: " + goal, Color.BLACK, 18, 10, 369 );
         showGrid(true);
     }
 
@@ -67,6 +72,7 @@ public class SnakeGame extends RetroGameEngine {
             if (SOUND) {soundAccompaniment.playMusic("coin-collect.wav", 0.8);}
             score += 5;
             setScore(score);
+            addTextInField(Direction.UP, "Score: " + score, Color.BLACK, 18, 10, 10 );
             createNewApple();
         }
         if (goal <= score) {
@@ -100,7 +106,7 @@ public class SnakeGame extends RetroGameEngine {
             soundAccompaniment.stopBackgroundMusic();
             soundAccompaniment.playMusic("lose.wav", 0.7);
         }
-        animation(frameRate, false);
+        stopAnimation();
         System.out.println("игра окончена");
         isGameStop = true;
     }
@@ -110,7 +116,7 @@ public class SnakeGame extends RetroGameEngine {
             soundAccompaniment.stopBackgroundMusic();
             soundAccompaniment.playMusic("win.wav", 0.9);
         }
-        animation(frameRate, false);
+        stopAnimation();
         System.out.println("Поздравляем, вы победили!");
         isGameStop = true;
     }

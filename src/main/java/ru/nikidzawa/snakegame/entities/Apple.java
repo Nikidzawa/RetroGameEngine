@@ -14,7 +14,4 @@ public class Apple extends GameObject {
     public void draw(RetroGameEngine retroGameEngine) {
         retroGameEngine.changeCell(x, y, APPLE, null, 20);
     }
-    public boolean checkCollision (GameObject object) {
-        return object.x == this.x && object.y == this.y;
-    }
 }

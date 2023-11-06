@@ -2,11 +2,10 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import ru.nikidzawa.snakegame.config.Grid?>
-<?import javafx.scene.control.CheckBox?>
-<BorderPane xmlns="http://javafx.com/javafx"
+<BorderPane fx:id="pane"
+            xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="ru.nikidzawa.snakegame.config.RetroGameEngine">
-
     <center>
         <Grid fx:id="grid"/>
     </center>
