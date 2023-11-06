@@ -15,13 +15,13 @@ import java.util.Objects;
 
 public class RetroGameEngine {
     @FXML
-    protected GridPanes gridPanes;
+    protected Grid grid;
     private AnimationTimer animationTimer;
-    public RetroGameEngine(GridPanes gridPanes) {this.gridPanes = gridPanes;}
+    public RetroGameEngine(Grid grid) {this.grid = grid;}
     public RetroGameEngine() {}
     @FXML
     protected void initialize() {
-        new SnakeGame(gridPanes);
+        new SnakeGame(grid);
     }
     public void onClick (KeyCode keyCode) {
 
@@ -36,16 +36,16 @@ public class RetroGameEngine {
                 stackPane.setMaxSize(cellWidth, cellHeight);
                 StackPane lastPane = findStackPane(x, y);
                 if (lastPane != null) {
-                    gridPanes.getChildren().remove(lastPane);
+                    grid.getChildren().remove(lastPane);
                 }
-                gridPanes.add(stackPane, x, y);
+                grid.add(stackPane, x, y);
             }
         }
     }
     private StackPane findStackPane(int x, int y) {
-        return (StackPane) gridPanes.getChildren().stream()
-                .filter(n -> Objects.equals(GridPanes.getRowIndex(n), y)
-                        && Objects.equals(GridPanes.getColumnIndex(n), x))
+        return (StackPane) grid.getChildren().stream()
+                .filter(n -> Objects.equals(Grid.getRowIndex(n), y)
+                        && Objects.equals(Grid.getColumnIndex(n), x))
                 .findFirst()
                 .orElse(null);
     }
@@ -76,8 +76,8 @@ public class RetroGameEngine {
             txt.setFont(Font.font(fontSize));
 
             newStackPane.getChildren().addAll(newRectangle, txt);
-            gridPanes.getChildren().remove(stackPane);
-            gridPanes.add(newStackPane, x, y);
+            grid.getChildren().remove(stackPane);
+            grid.add(newStackPane, x, y);
         }
         else {throw new RuntimeException("Ошибка в поиске элементов внутри StackPane");}
     }
@@ -101,8 +101,10 @@ public class RetroGameEngine {
         }
     }
     public void onFrame () {}
-
-
     public void showGrid (boolean show) {
-        gridPanes.setGridLinesVisible(show);}
+        grid.setGridLinesVisible(show);
+    }
+    public int random (int number) {
+        return (int) (Math.random() * number);
+    }
 }

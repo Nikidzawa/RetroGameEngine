@@ -7,6 +7,5 @@ public class GameObject {
     public GameObject (int x, int y) {
         this.x = x;
         this.y = y;
-
     }
 }
