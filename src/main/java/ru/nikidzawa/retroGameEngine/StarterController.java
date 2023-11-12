@@ -1,4 +1,4 @@
-package ru.nikidzawa.snakegame;
+package ru.nikidzawa.retroGameEngine;
 
 import java.io.IOException;
 import java.net.URL;
@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.stage.Stage;
+import ru.nikidzawa.retroGameEngine.snakeGame.service.SnakeGame;
 
 public class StarterController {
 

@@ -1,8 +1,9 @@
-package ru.nikidzawa.snakegame.entities;
+package ru.nikidzawa.retroGameEngine.snakeGame.entities;
 
-import ru.nikidzawa.snakegame.SnakeGame;
-import ru.nikidzawa.snakegame.config.GameObject;
-import ru.nikidzawa.snakegame.config.RetroGameEngine;
+import ru.nikidzawa.retroGameEngine.config.Color;
+import ru.nikidzawa.retroGameEngine.snakeGame.service.SnakeGame;
+import ru.nikidzawa.retroGameEngine.snakeGame.GameObject;
+import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Wall extends GameObject {
     }
     public void draw(RetroGameEngine retroGameEngine) {
         for (GameObject gameObject : walls) {
-            retroGameEngine.changeCell(gameObject.x, gameObject.y, WALL, null, 22);
+            retroGameEngine.changeCell(gameObject.x, gameObject.y, WALL, Color.NONE, 22);
         }
     }
     public boolean checkCollision (GameObject object) {

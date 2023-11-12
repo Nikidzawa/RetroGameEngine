@@ -1,7 +1,6 @@
-package ru.nikidzawa.snakegame.config;
+package ru.nikidzawa.retroGameEngine.snakeGame;
 
 public class GameObject {
-
     public int x;
     public int y;
     public GameObject (int x, int y) {

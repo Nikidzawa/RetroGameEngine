@@ -1,4 +1,4 @@
-package ru.nikidzawa.snakegame.config;
+package ru.nikidzawa.retroGameEngine.config;
 
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
@@ -7,12 +7,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import ru.nikidzawa.snakegame.SnakeGame;
-import ru.nikidzawa.snakegame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.service.SnakeGame;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.SpaceInvadersGame;
 
 import java.util.Objects;
 
@@ -21,20 +22,23 @@ public class RetroGameEngine {
     protected Grid grid;
     @FXML
     private BorderPane pane;
-
     private AnimationTimer animationTimer;
     public RetroGameEngine(Grid grid, BorderPane pane) {this.grid = grid; this.pane = pane;}
     public RetroGameEngine() {}
     @FXML
     protected void initialize() {
-        new SnakeGame(grid, pane);
+        new SpaceInvadersGame(grid, pane);
     }
-    public void onClick (KeyCode keyCode) {}
-    public void createGameField(int rowCount, int columnCount, int cellWidth, int cellHeight, Color color) {
+    public void onClickKey (KeyCode keyCode) {}
+    public void onReleaseKey (KeyCode keyCode) {}
+    public void createGameField(int rowCount, int columnCount, int cellWidth, int cellHeight,
+                                Color color) {
+        String nameColor = color.name();
+        grid.setStyle("-fx-background-color: " + nameColor);
         for (int x = 0; x < rowCount; x++) {
             for (int y = 0; y < columnCount; y++) {
                 Rectangle rectangle = new Rectangle(cellWidth, cellHeight);
-                rectangle.setFill(color);
+                rectangle.setFill(javafx.scene.paint.Color.valueOf(nameColor));
                 Text text = new Text("");
                 StackPane stackPane = new StackPane(rectangle, text);
                 stackPane.setMaxSize(cellWidth, cellHeight);
@@ -49,7 +53,8 @@ public class RetroGameEngine {
     public void createStaticField (Direction direction, Color backGroundColor) {
         AnchorPane anchorPane = new AnchorPane();
         anchorPane.setPrefHeight(60);
-        anchorPane.setStyle("-fx-background-color: " + colorToHex(backGroundColor));
+        anchorPane.setStyle("-fx-background-color: " +
+                colorToHex(javafx.scene.paint.Color.valueOf(backGroundColor.name())));
         switch (direction) {
             case UP : pane.setTop(anchorPane);
             break;
@@ -67,7 +72,7 @@ public class RetroGameEngine {
         AnchorPane anchorPane = findAnchorPane(direction);
         if (anchorPane != null) {
             Text text = new Text(message);
-            text.setFill(textColor);
+            text.setFill(javafx.scene.paint.Color.valueOf(textColor.name()));
             text.setFont(Font.font("Arial", fontSize));
             Text lastText = checkText(text, anchorPane);
             if (lastText != null) {
@@ -101,25 +106,34 @@ public class RetroGameEngine {
         }
         return null;
     }
-    private String colorToHex(Color color) {
+    private String colorToHex(javafx.scene.paint.Color color) {
         int red = (int) (color.getRed() * 255);
         int green = (int) (color.getGreen() * 255);
         int blue = (int) (color.getBlue() * 255);
 
         return String.format("#%02X%02X%02X", red, green, blue);
     }
-    private StackPane findStackPane(int x, int y) {
+    public StackPane findStackPane(int x, int y) {
         return (StackPane) grid.getChildren().stream()
                 .filter(n -> Objects.equals(Grid.getRowIndex(n), y)
                         && Objects.equals(Grid.getColumnIndex(n), x))
                 .findFirst()
                 .orElse(null);
     }
-    public void changeCell(int x, int y, String text, Color setColorOrNull, int fontSize) {
+    public void changeCell(int x, int y, String text, Color setColorOrNONE,
+                           int fontSize) {
         StackPane newStackPane = new StackPane();
         StackPane stackPane = findStackPane(x, y);
         Rectangle oldRectangle = null;
         Text oldText = null;
+
+        if (stackPane == null) {
+            System.out.println("ВНИМАНИЕ. Stack Pane не был обнаружен, какой-то элемент не был отрисован. " +
+                    "Проверьте координаты ваших объектов, возможно какой-то элемент вышел за координаты игрового поля." +
+                    "Для решения проблемы, поставьте ограничения для ваших объектов, чтобы они не оказались за" +
+                    " пределами игровой области");
+            return;
+        }
 
         for (Node node : stackPane.getChildren()) {
             if (node instanceof Rectangle) {
@@ -134,11 +148,13 @@ public class RetroGameEngine {
             Rectangle newRectangle = new Rectangle(
                     oldRectangle.getWidth(),
                     oldRectangle.getHeight(),
-                    setColorOrNull == null ? oldRectangle.getFill() : setColorOrNull
+                    setColorOrNONE == Color.NONE ?
+                            oldRectangle.getFill() : javafx.scene.paint.Color.valueOf(setColorOrNONE.name())
             );
 
             Text txt = new Text(text);
             txt.setFill(oldText.getFill());
+            txt.setFill(Paint.valueOf(Color.WHITE.name()));
             txt.setFont(Font.font(fontSize));
 
             newStackPane.getChildren().addAll(newRectangle, txt);

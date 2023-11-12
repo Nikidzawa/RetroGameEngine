@@ -1,17 +1,17 @@
-package ru.nikidzawa.snakegame;
+package ru.nikidzawa.retroGameEngine.snakeGame.service;
 
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
-import ru.nikidzawa.snakegame.config.Grid;
-import ru.nikidzawa.snakegame.config.RetroGameEngine;
-import ru.nikidzawa.snakegame.config.SoundAccompaniment;
-import ru.nikidzawa.snakegame.entities.Apple;
-import ru.nikidzawa.snakegame.entities.Direction;
-import ru.nikidzawa.snakegame.entities.Snake;
-import ru.nikidzawa.snakegame.entities.Wall;
+import ru.nikidzawa.retroGameEngine.config.Color;
+import ru.nikidzawa.retroGameEngine.config.Grid;
+import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
+import ru.nikidzawa.retroGameEngine.config.SoundAccompaniment;
+import ru.nikidzawa.retroGameEngine.snakeGame.entities.Apple;
+import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.entities.Snake;
+import ru.nikidzawa.retroGameEngine.snakeGame.entities.Wall;
 
 public class SnakeGame extends RetroGameEngine {
 
@@ -33,7 +33,7 @@ public class SnakeGame extends RetroGameEngine {
         super(grid, pane);
 
         Platform.runLater(grid::requestFocus);
-        grid.setOnKeyPressed(event -> onClick(event.getCode()));
+        grid.setOnKeyPressed(event -> onClickKey(event.getCode()));
         initialize();
     }
 
@@ -44,7 +44,7 @@ public class SnakeGame extends RetroGameEngine {
 
     private void createGame() {
         if (SOUND) {
-            soundAccompaniment.setURL("src/main/java/ru/nikidzawa/snakegame/sounds/");
+            soundAccompaniment.setURL("src/main/java/ru/nikidzawa/retroGameEngine/snakeGame/sounds/");
             soundAccompaniment.startBackGroundMusic("background-music.wav", 0.2F);
         }
         isGameStop = false;
@@ -85,7 +85,7 @@ public class SnakeGame extends RetroGameEngine {
     }
 
     @Override
-    public void onClick(KeyCode keyCode) {
+    public void onClickKey(KeyCode keyCode) {
         switch (keyCode) {
             case LEFT : snake.setDirection(Direction.LEFT);
             break;
@@ -121,7 +121,7 @@ public class SnakeGame extends RetroGameEngine {
         isGameStop = true;
     }
     public void drawGameField() {
-        createGameField(WIDTH, HEIGHT , 30, 30, Color.DARKSEAGREEN);
+        createGameField(WIDTH, HEIGHT , 30, 30, ru.nikidzawa.retroGameEngine.config.Color.DARKSEAGREEN);
         apple.draw(this);
         snake.draw(this);
         if (DIFFICULT) {

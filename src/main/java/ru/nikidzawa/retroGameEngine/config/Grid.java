@@ -1,4 +1,4 @@
-package ru.nikidzawa.snakegame.config;
+package ru.nikidzawa.retroGameEngine.config;
 
 import javafx.scene.Node;
 

@@ -10,12 +10,16 @@ module ru.nikidzawa.snakegame {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
-    opens ru.nikidzawa.snakegame to javafx.fxml;
+    opens ru.nikidzawa.retroGameEngine to javafx.fxml;
 
-    exports ru.nikidzawa.snakegame.config to javafx.fxml;
-    opens ru.nikidzawa.snakegame.config;
+    exports ru.nikidzawa.retroGameEngine.config to javafx.fxml;
+    opens ru.nikidzawa.retroGameEngine.config;
 
-    exports ru.nikidzawa.snakegame;
-    exports ru.nikidzawa.snakegame.entities;
-    opens ru.nikidzawa.snakegame.entities to javafx.fxml;
+    exports ru.nikidzawa.retroGameEngine.snakeGame.entities;
+    opens ru.nikidzawa.retroGameEngine.snakeGame.entities to javafx.fxml;
+    exports ru.nikidzawa.retroGameEngine.snakeGame.service;
+    opens ru.nikidzawa.retroGameEngine.snakeGame.service to javafx.fxml;
+    exports ru.nikidzawa.retroGameEngine;
+    exports ru.nikidzawa.retroGameEngine.snakeGame to javafx.fxml;
+    opens ru.nikidzawa.retroGameEngine.snakeGame;
 }

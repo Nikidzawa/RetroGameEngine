@@ -1,4 +1,4 @@
-package ru.nikidzawa.snakegame;
+package ru.nikidzawa.retroGameEngine;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

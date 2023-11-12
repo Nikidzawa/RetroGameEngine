@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.BorderPane?>
-<?import ru.nikidzawa.snakegame.config.Grid?>
+<?import ru.nikidzawa.retroGameEngine.config.Grid?>
 <BorderPane fx:id="pane"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ru.nikidzawa.snakegame.config.RetroGameEngine">
+            fx:controller="ru.nikidzawa.retroGameEngine.config.RetroGameEngine">
     <center>
         <Grid fx:id="grid"/>
     </center>
