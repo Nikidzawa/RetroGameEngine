@@ -68,10 +68,10 @@ public class Snake {
         for (int i = 0; i < snakeParts.size(); i++) {
             GameObject part = snakeParts.get(i);
             if (i == 0) {
-                game.changeCell(part.x, part.y, HEAD, Color.NONE, 22);
+                game.changeCell(part.x, part.y, HEAD, Color.NONE, 22, Color.BLACK);
             }
             else {
-                game.changeCell(part.x, part.y, BODY, Color.NONE, 22);
+                game.changeCell(part.x, part.y, BODY, Color.NONE, 22, Color.BLACK);
             }
         }
     }

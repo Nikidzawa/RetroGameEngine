@@ -10,6 +10,6 @@ public class Star extends GameObject{
     public static final String STAR = "\u2605";
 
     public void draw (RetroGameEngine retroGameEngine) {
-        retroGameEngine.changeCell((int) x, (int) y, STAR, Color.NONE, 10);
+        retroGameEngine.changeCell((int) x, (int) y, STAR, Color.NONE, 10, Color.WHITE);
     }
 }

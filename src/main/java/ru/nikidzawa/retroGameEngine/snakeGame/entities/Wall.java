@@ -21,7 +21,7 @@ public class Wall extends GameObject {
     }
     public void draw(RetroGameEngine retroGameEngine) {
         for (GameObject gameObject : walls) {
-            retroGameEngine.changeCell(gameObject.x, gameObject.y, WALL, Color.NONE, 22);
+            retroGameEngine.changeCell(gameObject.x, gameObject.y, WALL, Color.NONE, 22, Color.BLACK);
         }
     }
     public boolean checkCollision (GameObject object) {

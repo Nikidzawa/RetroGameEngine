@@ -13,6 +13,6 @@ public class Apple extends GameObject {
     }
 
     public void draw(RetroGameEngine retroGameEngine) {
-        retroGameEngine.changeCell(x, y, APPLE, Color.NONE, 20);
+        retroGameEngine.changeCell(x, y, APPLE, Color.NONE, 20, Color.BLACK);
     }
 }

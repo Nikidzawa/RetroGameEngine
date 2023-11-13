@@ -25,7 +25,7 @@ public class GameObject {
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 int colorIndex = matrix[j][i];
-                retroGameEngine.changeCell((int) (x + i), (int) (y + j), "", Color.values()[colorIndex], 0);
+                retroGameEngine.changeCell((int) (x + i), (int) (y + j), "", Color.values()[colorIndex], 0, Color.NONE);
             }
         }
     }

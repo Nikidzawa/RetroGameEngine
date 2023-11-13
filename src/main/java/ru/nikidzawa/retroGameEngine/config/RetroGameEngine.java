@@ -23,11 +23,15 @@ public class RetroGameEngine {
     @FXML
     private BorderPane pane;
     private AnimationTimer animationTimer;
+    public static Games GAME = Games.SPACE_INVADERS;
     public RetroGameEngine(Grid grid, BorderPane pane) {this.grid = grid; this.pane = pane;}
     public RetroGameEngine() {}
     @FXML
     protected void initialize() {
-        new SpaceInvadersGame(grid, pane);
+        switch (GAME) {
+            case SNAKE -> new SnakeGame(grid, pane);
+            case SPACE_INVADERS -> new SpaceInvadersGame(grid, pane);
+        }
     }
     public void onClickKey (KeyCode keyCode) {}
     public void onReleaseKey (KeyCode keyCode) {}
@@ -121,7 +125,7 @@ public class RetroGameEngine {
                 .orElse(null);
     }
     public void changeCell(int x, int y, String text, Color setColorOrNONE,
-                           int fontSize) {
+                           int fontSize, Color color) {
         StackPane newStackPane = new StackPane();
         StackPane stackPane = findStackPane(x, y);
         Rectangle oldRectangle = null;
@@ -154,7 +158,9 @@ public class RetroGameEngine {
 
             Text txt = new Text(text);
             txt.setFill(oldText.getFill());
-            txt.setFill(Paint.valueOf(Color.WHITE.name()));
+            if (color != Color.NONE) {
+                txt.setFill(Paint.valueOf(color.name()));
+            }
             txt.setFont(Font.font(fontSize));
 
             newStackPane.getChildren().addAll(newRectangle, txt);

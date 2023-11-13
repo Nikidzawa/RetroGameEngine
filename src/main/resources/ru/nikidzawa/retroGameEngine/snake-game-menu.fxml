@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="320.0" prefWidth="402.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nikidzawa.retroGameEngine.StarterController">
+<AnchorPane prefHeight="320.0" prefWidth="402.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nikidzawa.retroGameEngine.MenuSnakeGame">
    <children>
-      <ImageView fitHeight="233.0" fitWidth="401.0" layoutY="26.0" pickOnBounds="true">
+      <ImageView fitHeight="183.0" fitWidth="363.0" layoutX="21.0" pickOnBounds="true">
          <image>
             <Image url="https://i.pinimg.com/originals/47/f1/06/47f10636385f8ae2cc7f438c440f225f.jpg" />
          </image>
@@ -24,11 +24,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fill="WHITE" layoutX="73.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Создано на движке Retro Game Engine" textAlignment="CENTER" wrappingWidth="255.73679733276367">
-         <font>
-            <Font name="arialuni" size="14.0" />
-         </font>
-      </Text>
       <CheckBox fx:id="difficult" layoutX="14.0" layoutY="264.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="237.0" text="Режим повышенной сложности" textFill="WHITE">
          <font>
             <Font name="arialuni" size="14.0" />
@@ -45,5 +40,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </CheckBox>
+      <Text fill="#e7e7e7" layoutX="24.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Вы попали в шкуру невероятно голодной змеи, которая безума от яблок (минуту, а змеи точно едят яблоки?) ешьте сколько влезет, главное - не съесть самого себя!" textAlignment="CENTER" wrappingWidth="353.60003662109375">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

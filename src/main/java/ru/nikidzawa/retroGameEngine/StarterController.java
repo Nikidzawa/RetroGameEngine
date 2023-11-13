@@ -1,5 +1,4 @@
 package ru.nikidzawa.retroGameEngine;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,48 +7,56 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
-import ru.nikidzawa.retroGameEngine.snakeGame.service.SnakeGame;
+import ru.nikidzawa.retroGameEngine.config.Games;
+import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
 
 public class StarterController {
+        @FXML
+        private ResourceBundle resources;
 
-    @FXML
-    private ResourceBundle resources;
+        @FXML
+        private URL location;
 
-    @FXML
-    private URL location;
+        @FXML
+        private Button button;
 
-    @FXML
-    private Button button;
+        @FXML
+        private SplitMenuButton menu;
 
-    @FXML
-    private CheckBox difficult;
+        @FXML
+        private MenuItem snake;
 
-    @FXML
-    private CheckBox sound;
+        @FXML
+        private MenuItem spaceInv;
 
-    @FXML
-    void initialize() {
-        button.setOnAction(event -> {
-            SnakeGame.DIFFICULT = difficult.isSelected();
-            SnakeGame.SOUND = sound.isSelected();
+        @FXML
+        void initialize() {
+            snake.setOnAction(event -> RetroGameEngine.GAME = Games.SNAKE);
+            spaceInv.setOnAction(event -> RetroGameEngine.GAME = Games.SPACE_INVADERS);
+            button.setOnAction(event -> {
+                    button.getScene().getWindow().hide();
+                    FXMLLoader loader = null;
+                    if (RetroGameEngine.GAME == Games.SNAKE) {
+                            loader = new FXMLLoader(getClass().getResource("snake-game-menu.fxml"));
+                    }
+                    else if (RetroGameEngine.GAME == Games.SPACE_INVADERS) {
+                            loader = new FXMLLoader(getClass().getResource("space-invaders-menu.fxml"));
+                    }
+                    try {
+                            loader.load();
+                    } catch (IOException e) {
+                            throw new RuntimeException(e);
+                    }
+                    Parent root = loader.getRoot();
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Snake Menu");
+                    stage.show();
+            });
 
-            button.getScene().getWindow().hide();
+        }
 
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("snake-game.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Snake Game");
-            stage.showAndWait();
-        });
-    }
 }
