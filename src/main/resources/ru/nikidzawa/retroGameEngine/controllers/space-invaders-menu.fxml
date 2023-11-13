@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="321.0" prefWidth="403.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nikidzawa.retroGameEngine.SpaceInvadersController">
+<AnchorPane prefHeight="321.0" prefWidth="403.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.nikidzawa.retroGameEngine.controllers.SpaceInvadersController">
    <children>
       <ImageView fitHeight="177.0" fitWidth="345.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true">
          <image>

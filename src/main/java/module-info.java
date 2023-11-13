@@ -22,4 +22,6 @@ module ru.nikidzawa.snakegame {
     exports ru.nikidzawa.retroGameEngine;
     exports ru.nikidzawa.retroGameEngine.snakeGame to javafx.fxml;
     opens ru.nikidzawa.retroGameEngine.snakeGame;
+    exports ru.nikidzawa.retroGameEngine.controllers;
+    opens ru.nikidzawa.retroGameEngine.controllers to javafx.fxml;
 }
