@@ -1,4 +1,4 @@
-package ru.nikidzawa.retroGameEngine.snakeGame.entities;
+package ru.nikidzawa.retroGameEngine.snakeGame.gameObjects;
 
 public enum Direction {
     UP,

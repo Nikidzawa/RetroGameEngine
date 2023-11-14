@@ -1,4 +1,4 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects;
 
 import ru.nikidzawa.retroGameEngine.config.Color;
 import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
@@ -7,8 +7,8 @@ public class GameObject {
     public double x;
     public double y;
     public int[][] matrix;
-    int width;
-    int height;
+    public int width;
+    public int height;
 
     public GameObject (double x, double y) {
         this.x = x;

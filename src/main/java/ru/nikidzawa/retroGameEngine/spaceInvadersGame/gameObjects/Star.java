@@ -1,9 +1,10 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects;
 
 import ru.nikidzawa.retroGameEngine.config.Color;
 import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.GameObject;
 
-public class Star extends GameObject{
+public class Star extends GameObject {
     public Star(double x, double y) {
         super(x, y);
     }

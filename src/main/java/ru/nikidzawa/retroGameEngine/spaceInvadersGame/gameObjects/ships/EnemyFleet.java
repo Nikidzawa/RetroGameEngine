@@ -1,7 +1,11 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.ships;
 
 import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.visualization.PatternMatrix;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.service.SpaceInvadersGame;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.Bullet;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,13 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.ships;
+
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.Bullet;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.GameObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Ship extends GameObject{
+public class Ship extends GameObject {
     public boolean isAlive = true;
     private List<int[][]> frames;
     private int frameIndex;

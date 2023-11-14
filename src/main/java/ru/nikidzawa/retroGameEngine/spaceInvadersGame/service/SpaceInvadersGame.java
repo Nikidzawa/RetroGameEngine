@@ -1,4 +1,4 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.service;
 
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
@@ -6,7 +6,11 @@ import javafx.scene.layout.BorderPane;
 import ru.nikidzawa.retroGameEngine.config.Color;
 import ru.nikidzawa.retroGameEngine.config.Grid;
 import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.Bullet;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.Star;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.ships.EnemyFleet;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.ships.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +30,10 @@ public class SpaceInvadersGame extends RetroGameEngine {
     private  List<Bullet> enemyBullets;
     private List<Bullet> playerBullets;
     private EnemyFleet enemyFleet;
-    private  Player player;
+    private Player player;
     public static final int COMPLEXITY = 5;
     public static final int  PLAYER_BULLETS_MAX = 2;
-    private boolean isGameStopped = false;
+    public boolean isGameStopped = false;
     private int animationsCount;
 
 

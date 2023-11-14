@@ -1,4 +1,4 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.visualization;
 
 public class PatternMatrix {
     public final static int[][] PLAYER = new int[][]

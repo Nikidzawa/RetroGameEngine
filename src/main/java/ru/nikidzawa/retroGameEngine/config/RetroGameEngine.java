@@ -11,9 +11,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
 import ru.nikidzawa.retroGameEngine.snakeGame.service.SnakeGame;
-import ru.nikidzawa.retroGameEngine.spaceInvadersGame.SpaceInvadersGame;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.service.SpaceInvadersGame;
 
 import java.util.Objects;
 

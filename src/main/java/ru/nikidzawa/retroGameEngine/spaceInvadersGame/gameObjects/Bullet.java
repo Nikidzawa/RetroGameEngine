@@ -1,6 +1,7 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects;
 
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.visualization.PatternMatrix;
 
 public class Bullet extends GameObject {
     private int directionBullet;

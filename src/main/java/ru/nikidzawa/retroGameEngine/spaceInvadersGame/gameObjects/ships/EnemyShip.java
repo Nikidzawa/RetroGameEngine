@@ -1,8 +1,10 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.ships;
 
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.visualization.PatternMatrix;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.Bullet;
 
-public class EnemyShip extends Ship{
+public class EnemyShip extends Ship {
     public EnemyShip(double x, double y) {
         super(x, y);
         setFrame(PatternMatrix.ENEMY);

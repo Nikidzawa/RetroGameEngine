@@ -8,10 +8,10 @@ import ru.nikidzawa.retroGameEngine.config.Color;
 import ru.nikidzawa.retroGameEngine.config.Grid;
 import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
 import ru.nikidzawa.retroGameEngine.config.SoundAccompaniment;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Apple;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Snake;
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Wall;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Apple;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Snake;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Wall;
 
 public class SnakeGame extends RetroGameEngine {
 

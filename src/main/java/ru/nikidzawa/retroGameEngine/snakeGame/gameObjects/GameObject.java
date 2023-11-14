@@ -1,4 +1,4 @@
-package ru.nikidzawa.retroGameEngine.snakeGame;
+package ru.nikidzawa.retroGameEngine.snakeGame.gameObjects;
 
 public class GameObject {
     public int x;

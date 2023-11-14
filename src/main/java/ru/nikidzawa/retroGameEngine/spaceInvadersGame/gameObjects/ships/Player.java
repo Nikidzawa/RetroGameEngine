@@ -1,10 +1,13 @@
-package ru.nikidzawa.retroGameEngine.spaceInvadersGame;
+package ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.ships;
 
-import ru.nikidzawa.retroGameEngine.snakeGame.entities.Direction;
+import ru.nikidzawa.retroGameEngine.snakeGame.gameObjects.Direction;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.visualization.PatternMatrix;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.service.SpaceInvadersGame;
+import ru.nikidzawa.retroGameEngine.spaceInvadersGame.gameObjects.Bullet;
 
 import java.util.List;
 
-public class Player extends Ship{
+public class Player extends Ship {
     public boolean isAlive = true;
     private Direction direction = Direction.UP;
     public Player() {

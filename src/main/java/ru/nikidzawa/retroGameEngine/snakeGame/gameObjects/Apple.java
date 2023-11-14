@@ -1,7 +1,6 @@
-package ru.nikidzawa.retroGameEngine.snakeGame.entities;
+package ru.nikidzawa.retroGameEngine.snakeGame.gameObjects;
 
 import ru.nikidzawa.retroGameEngine.config.Color;
-import ru.nikidzawa.retroGameEngine.snakeGame.GameObject;
 import ru.nikidzawa.retroGameEngine.config.RetroGameEngine;
 
 public class Apple extends GameObject {
